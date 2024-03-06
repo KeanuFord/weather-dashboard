@@ -4,6 +4,7 @@
     --background: #0b131e;
     --tile: #202b3b;
     --text: white;
+    --card: #95b4d45f;
 }
 
 body {
@@ -40,7 +41,7 @@ aside {
     margin: 1%;
     color: var(--text);
     background-color: var(--tile);
-    height: 100vh;
+    height: 80vh;
     border-radius: 10px;
 }
 
@@ -87,6 +88,15 @@ input {
     border-radius: 10px;
 }
 
-.forecastCards {
+#divWrap {
     display: flex;
+}
+
+.forecast{
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 20%;
+    margin: 25px;
+    background-color: var(--card);
+    border-radius: 10px;
 }

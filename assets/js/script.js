@@ -9,21 +9,21 @@ function renderSearchHistory() {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     if (!searchHistory) searchHistory = [];
 
-    const historyList = document.querySelector('#divWrap');
+    const historyList = document.querySelector('#histWrap');
     if(historyList) historyList.remove();
 
-    let divWrap = document.createElement('div');
-    divWrap.setAttribute('id', 'divWrap');
-    document.querySelector('#historyCards').append(divWrap);
+    let histWrap = document.createElement('div');
+    histWrap.setAttribute('id', 'histWrap');
+    document.querySelector('#historyCards').append(histWrap);
 
     for(let i=0; i < searchHistory.length; i++) {
         let historyCard = document.createElement('section');
-        historyCard.setAttribute('class', `center-align history search${i+1}`);
+        historyCard.setAttribute('class', `center-align history search${i+1} ${searchHistory[i]}`);
 
         let searchIndex = document.createElement('h3');
         searchIndex.textContent = `${searchHistory[i]}`;
 
-        divWrap.append(historyCard);
+        histWrap.append(historyCard);
         document.querySelector(`.search${i+1}`).append(searchIndex);
     }
 }
@@ -49,10 +49,10 @@ function displayWeather(result) {
     for(let i=0; i < 5; i++) {
         let index = (4+(8*i));
         let forecastCard = document.createElement('section');
-        forecastCard.setAttribute('class', ` center-align forecast day${i+1}`);
+        forecastCard.setAttribute('class', ` forecast day${i+1}`);
 
         let forecastDate = document.createElement('h3');
-        forecastDate.textContent = `${result.list[index].dt_txt}`;
+        forecastDate.textContent = `${result.list[index].dt_txt.slice(0, 10)}`;
 
         let forecastIcon = document.createElement('IMG');
         let { icon } = result.list[index].weather[0];
@@ -101,6 +101,7 @@ function getLocation(name) {
 }
 
 function handleFormSubmit() {
+    event.preventDefault();
     let formValue = document.querySelector('#cityInput').value;
     
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
@@ -112,8 +113,6 @@ function handleFormSubmit() {
     searchHistory.push(formValue);
 
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-    console.log(formValue);
-    console.log(searchHistory);
     getLocation(formValue);
  }
 
