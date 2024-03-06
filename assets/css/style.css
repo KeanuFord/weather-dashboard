@@ -70,19 +70,23 @@ input {
     display: flex;
     flex-direction: column;
     flex: 80%;
-    background-color: var(--tile);
-    margin: 1%;
-    border-radius: 10px;
+    
 }
 
 #currentWeather {
     height: 25vh;
     margin: 1%;
-    
+    background-color: var(--tile);
+    border-radius: 10px;
+    padding-left: 20px;
 }
 #fiveDayForecast {
     background-color: var(--tile);
     margin: 1%;
     padding: 20px;
-    
+    border-radius: 10px;
+}
+
+.forecastCards {
+    display: flex;
 }
