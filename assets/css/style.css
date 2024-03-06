@@ -23,6 +23,9 @@ p {
     line-height: 1.8;
 }
 
+h2 { 
+    margin-bottom: 0px;
+}
 header {
     padding: 5px;
     text-align: center;
