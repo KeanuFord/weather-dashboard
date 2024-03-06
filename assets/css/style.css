@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    --header: #245c94;
+    --background: #0b131e;
+    --tile: #202b3b;
+    --text: white;
+}
+
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+header {
+    padding: 5px;
+    text-align: center;
+    color: var(--text);
+    background: var(--header);
+}
+
+main {
+    display: flex;
+    background-color: var(--background);
+}
+
+aside {
+    flex: 20%;
+    padding: 20px;
+    margin: 1%;
+    color: var(--text);
+    background-color: var(--tile);
+    height: 100vh;
+    border-radius: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.btn-custom {
+    background: var(--header);
+    color: white;
+    border-style: outset;
+    border-color: var(--header);
+    height: 40px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 6px;
+}
+
+.btn-custom:hover {
+    background-color: #2581b6;
+}
+
+
+#weather{
+    display: flex;
+    flex-direction: column;
+    flex: 80%;
+    background-color: var(--tile);
+    margin: 1%;
+    border-radius: 10px;
+}
+
+#currentWeather {
+    height: 25vh;
+    margin: 1%;
+    
+}
+#fiveDayForecast {
+    background-color: var(--tile);
+    margin: 1%;
+    padding: 20px;
+    
+}
