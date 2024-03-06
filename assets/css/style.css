@@ -13,6 +13,15 @@ body {
     color: var(--text);
 }
 
+.icon {
+    position: relative;
+    top: 15px;
+}
+
+p {
+    line-height: 1.8;
+}
+
 header {
     padding: 5px;
     text-align: center;

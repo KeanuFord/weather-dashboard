@@ -1,4 +1,8 @@
-
+const cityResultEl = document.querySelector('#city-result');
+const tempResultEl = document.querySelector('#temp-result');
+const windResultEl = document.querySelector('#wind-result');
+const humidityResultEl = document.querySelector('#humidity-result');
+const weatherIconEl = document.querySelector('#weather-icon');
 
 function createHistoryCard() {
     const taskCard = $('<aside>').addClass('card historyCard my-3')
@@ -13,17 +17,18 @@ function renderSearchHistory() {
 
 }
 
-function displayWeather(weather) {
-    console.log("==============================");
-    console.log("City: " + weather.city.name);
-    for(let i = 0; i < 5; i++) {
-        console.log("==============================");
-        console.log("Day " + (i+1));
-        console.log("Temp: " + weather.list[i].main.temp);
-        console.log("Wind: " + weather.list[i].wind.speed);
-        console.log("Humidity: " + weather.list[i].main.humidity);
-    }
+function displayWeather(result) {
+     
     
+    console.log("==============================");
+    console.log(result);
+    const { icon } = result.list[0].weather[0];
+
+    weatherIconEl.src = `https://openweathermap.org/img/wn/${icon}.png`;
+    cityResultEl.textContent = result.city.name;
+    tempResultEl.textContent = result.list[0].main.temp;
+    windResultEl.textContent = result.list[0].wind.speed;
+    humidityResultEl.textContent = result.list[0].main.humidity;
 }
 
 function getLocation(name) {
@@ -35,7 +40,7 @@ function getLocation(name) {
             return response.json();
         })
         .then(function (location)  {
-            let weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${location[0].lat}&lon=${location[0].lon}&appid=${apiKey}`;
+            let weatherURL = `https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=${location[0].lat}&lon=${location[0].lon}&appid=${apiKey}`;
             
             fetch(weatherURL)
             .then(function (response) {
