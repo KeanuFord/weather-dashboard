@@ -109,7 +109,7 @@ function getLocation(name) {
     const apiKey = 'b1afece79c45b5ecc68a8d199c4aa2b7';
     
     // Grab name of city and convert to latitude and longitude cordinates
-    let locationURL = `http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=5&appid=${apiKey}`;
+    let locationURL = `https://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=5&appid=${apiKey}`;
     
     fetch(locationURL)
         .then(function (response) {
