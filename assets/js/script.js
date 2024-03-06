@@ -17,8 +17,10 @@ function renderSearchHistory() {
     document.querySelector('#historyCards').append(histWrap);
 
     for(let i=0; i < searchHistory.length; i++) {
-        let historyCard = document.createElement('section');
-        historyCard.setAttribute('class', `center-align history search${i+1} ${searchHistory[i]}`);
+        let historyCard = document.createElement('button');
+        historyCard.setAttribute('class', `btn history search${i+1} `);
+        historyCard.setAttribute('id', `${searchHistory[i]}`);
+        historyCard.setAttribute('onclick', "handleHistoryClick(id)");
 
         let searchIndex = document.createElement('h3');
         searchIndex.textContent = `${searchHistory[i]}`;
@@ -29,8 +31,6 @@ function renderSearchHistory() {
 }
 
 function displayWeather(result) {
-    console.log(result);
-    
     // Current Weather Banner
     const { icon } = result.list[0].weather[0];
     weatherIconEl.src = `https://openweathermap.org/img/wn/${icon}.png`;
@@ -41,6 +41,9 @@ function displayWeather(result) {
     humidityResultEl.textContent = result.list[0].main.humidity;
 
     // 5 Day Forecast Cards
+
+    let previousCards = document.querySelector('#divWrap');
+    if (previousCards) previousCards.remove();
 
     let divWrap = document.createElement('div');
     divWrap.setAttribute('id', 'divWrap');
@@ -100,14 +103,28 @@ function getLocation(name) {
         }); 
 }
 
-function handleFormSubmit() {
-    event.preventDefault();
-    let formValue = document.querySelector('#cityInput').value;
+function handleHistoryClick(query) {
+    let formValue = query;
     
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     if(!searchHistory) searchHistory = [];
 
     if(searchHistory.length >= 9) {
+        searchHistory.splice(0, 1);
+    }
+    searchHistory.push(formValue);
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    getLocation(formValue);
+ }
+
+function handleFormSubmit() {
+    let formValue = document.querySelector('#cityInput').value;
+    
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if(!searchHistory) searchHistory = [];
+
+    if(searchHistory.length >= 10) {
         searchHistory.splice(0, 1);
     }
     searchHistory.push(formValue);

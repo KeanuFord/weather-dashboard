@@ -100,3 +100,11 @@ input {
     background-color: var(--card);
     border-radius: 10px;
 }
+
+.history {
+    display: flex;
+    color: white;
+    border: none;
+    background: none;
+    height: 45px;
+}
